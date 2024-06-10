@@ -1,0 +1,22 @@
+{
+  "name": "botwhatsapp",
+  "type": "module",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "devDependencies": {
+    "@rocketseat/eslint-config": "^1.2.0",
+    "nodemon": "^2.0.22"
+  },
+  "dependencies": {
+    "qrcode-generator": "^1.4.4",
+    "venom-bot": "^5.1.0"
+  },
+  "description": "## Descrição do Projeto",
+  "keywords": [],
+  "author": ""
+}
