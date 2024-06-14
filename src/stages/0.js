@@ -13,9 +13,9 @@ export const initialStage = {
       Eu sou chaybs, o *assistente virtual* da ${venombot.getSessionName}.
       *Posso te ajudar?* 🙋‍♂️
       -----------------------------------
-      1️⃣ - Teste
-      2️⃣ - teste 2
-      0️⃣ - teste 3
+      0️⃣ - Falar com atendente      
+      2️⃣ - Produtos pirapitinga
+      1️⃣ - menu
     `
     await venombot.sendText({ to: from, message })
   },
