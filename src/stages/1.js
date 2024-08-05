@@ -8,7 +8,8 @@ import { STAGES } from './index.js'
 export const stageOne = {
   async exec(params) {
     const message = params.message.trim()
-    const isMsgValid = /[0|1|2]/.test(message)
+    const isMsgValid = /[0]/.test(message)
+    // const isMsgValid = /0/.test(message)
 
     let msg =
       '❌ *Digite uma opção válida, por favor.* \n⚠️ ```APENAS UMA OPÇÃO POR VEZ``` ⚠️'
@@ -17,10 +18,10 @@ export const stageOne = {
       const option = options[Number(message)]()
       msg = option.message
       storage[params.from].stage = option.nextStage || STAGES.INICIAL
+      console.log(option.nextStage)
     }
 
     await VenomBot.getInstance().sendText({ to: params.from, message: msg })
-
     if (storage[params.from].stage === STAGES.INICIAL) {
       await initialStage.exec(params)
     } else if (storage[params.from].stage === STAGES.FALAR_COM_ATENDENTE) {
@@ -33,6 +34,19 @@ export const stageOne = {
 }
 
 const options = {
+  0: () => {
+    return {
+      message: `
+   1️⃣ - Mais informações para hospedagem
+   2️⃣ - Como funciona o Day use
+   3️⃣ - É necessário fazer reserva?
+   4️⃣ - Localização
+   5️⃣ - Qual o horário de funcionamento
+   6️⃣ - Como funciona a pesca esportiva?
+`,
+      nextStage: STAGES.MENU,
+    }
+  },
   1: () => {
     let message = '🚨  CARDÁPIO  🚨\n\n'
 
@@ -56,19 +70,15 @@ const options = {
       nextStage: null,
     }
   },
-  0: () => {
-    return {
-      message:
-        '🔃 Encaminhando você para um atendente. \n⏳ *Aguarde um instante*.\n \n⚠️ A qualquer momento, digite *ENCERRAR* para encerrar o atendimento. ⚠️',
-      nextStage: STAGES.FALAR_COM_ATENDENTE,
-    }
-  },
 }
 
 const numbers = {
+  0: '0️⃣',
   1: '1️⃣',
   2: '2️⃣',
   3: '3️⃣',
   4: '4️⃣',
   5: '5️⃣',
+  6: '6️⃣',
+  7: '7️⃣',
 }
