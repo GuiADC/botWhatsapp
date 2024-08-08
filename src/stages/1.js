@@ -8,31 +8,43 @@ import { STAGES } from './index.js'
 export const stageOne = {
   async exec(params) {
     const message = params.message.trim()
-    const isMsgValid = /[0|1|2]/.test(message)
+    let isMsgValid = /[0]/.test(message)
 
     let msg =
       '❌ *Digite uma opção válida, por favor.* \n⚠️ ```APENAS UMA OPÇÃO POR VEZ``` ⚠️'
 
     if (isMsgValid) {
-      const option = options[Number(message)]()
-      msg = option.message
-      storage[params.from].stage = option.nextStage || STAGES.INICIAL
+      storage[params.from].stage = STAGES.CARRINHO
+      const menuMessage = `
+      1️⃣ - Mais informações para hospedagem
+      2️⃣ - Como funciona o Day use
+      3️⃣ - É necessário fazer reserva?
+      4️⃣ - Localização
+      5️⃣ - Qual o horário de funcionamento
+      6️⃣ - Como funciona a pesca esportiva?
+    `
+    await VenomBot.getInstance().sendText({ to: params.from, message: menuMessage }) 
+    return
     }
 
-    await VenomBot.getInstance().sendText({ to: params.from, message: msg })
-
-    if (storage[params.from].stage === STAGES.INICIAL) {
-      await initialStage.exec(params)
-    } else if (storage[params.from].stage === STAGES.FALAR_COM_ATENDENTE) {
-      storage[params.from].finalStage = {
-        startsIn: new Date().getTime(),
-        endsIn: new Date().setSeconds(60), // 1 minute of inactivity
-      }
-    }
+    await VenomBot.getInstance().sendText({ to: params.from, message: msg }) 
   },
 }
 
 const options = {
+  0: () => {
+    return {
+      message: `
+        1️⃣ - Mais informações para hospedagem
+        2️⃣ - Como funciona o Day use
+        3️⃣ - É necessário fazer reserva?
+        4️⃣ - Localização
+        5️⃣ - Qual o horário de funcionamento
+        6️⃣ - Como funciona a pesca esportiva?
+      `,
+      nextStage: STAGES.CARRINHO,  // Mantém no menu para seleção de opção
+    }
+  },  
   1: () => {
     let message = '🚨  CARDÁPIO  🚨\n\n'
 
@@ -54,13 +66,6 @@ const options = {
     return {
       message,
       nextStage: null,
-    }
-  },
-  0: () => {
-    return {
-      message:
-        '🔃 Encaminhando você para um atendente. \n⏳ *Aguarde um instante*.\n \n⚠️ A qualquer momento, digite *ENCERRAR* para encerrar o atendimento. ⚠️',
-      nextStage: STAGES.FALAR_COM_ATENDENTE,
     }
   },
 }

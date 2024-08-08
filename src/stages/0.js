@@ -9,13 +9,14 @@ export const initialStage = {
     const venombot = await VenomBot.getInstance()
 
     const message = `
-      👋 Olá, como vai?
-      Eu sou chaybs, o *assistente virtual* da ${venombot.getSessionName}.
-      *Posso te ajudar?* 🙋‍♂️
-      -----------------------------------
-      1️⃣ - Teste
-      2️⃣ - teste 2
-      0️⃣ - teste 3
+      Seja bem vindo ao Pirapitinga! Somos um Hotel Fazenda, localizado em Luziânia Goiás, 
+      pensando em você que procura um lugar aconchegante para descanso e lazer!
+      No nosso local não é permitido a entrada de comida e bebida. 
+      Nosso Day Use é R$ 19,90 por pessoa, funcionamos de quinta a domingo e feriados! 
+      Eu sou o Bot Pirapitinga, estou aqui para tirar suas dúvidas.  
+      Caso prefira ligação: (61)996191277 😍🙏❤️🤩
+
+      0️⃣ - continuar atendimento!
     `
     await venombot.sendText({ to: from, message })
   },
