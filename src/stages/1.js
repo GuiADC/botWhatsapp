@@ -13,7 +13,7 @@ export const stageOne = {
     let msg =
       '❌ *Digite uma opção válida, por favor.* \n⚠️ ```APENAS UMA OPÇÃO POR VEZ``` ⚠️'
 
-    if (isMsgValid) {
+    if (message === '0') {
       storage[params.from].stage = STAGES.CARRINHO
       const menuMessage = `
       1️⃣ - Mais informações para hospedagem
@@ -25,9 +25,9 @@ export const stageOne = {
     `
     await VenomBot.getInstance().sendText({ to: params.from, message: menuMessage }) 
     return
-    }
-
-    await VenomBot.getInstance().sendText({ to: params.from, message: msg }) 
+    }else{
+      await VenomBot.getInstance().sendText({ to: params.from, message: msg }) 
+    }  
   },
 }
 
