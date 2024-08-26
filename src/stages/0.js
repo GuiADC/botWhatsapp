@@ -13,7 +13,7 @@ export const initialStage = {
       pensando em você que procura um lugar aconchegante para descanso e lazer!
       No nosso local não é permitido a entrada de comida e bebida. 
       Nosso Day Use é R$ 19,90 por pessoa, funcionamos de quinta a domingo e feriados! 
-      Eu sou o Bot Pirapitinga, estou aqui para tirar suas dúvidas.  
+      Eu sou o Bot Pirapitinga, estou aqui para tirar suas dúvidas.
       Caso prefira ligação: (61)996191277 😍🙏❤️🤩
 
       0️⃣ - continuar atendimento!
