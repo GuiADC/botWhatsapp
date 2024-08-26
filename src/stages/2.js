@@ -1,5 +1,5 @@
 import { VenomBot } from '../venom.js'
-import { returnMessage } from './neighborhoods.js'
+import { returnMessage } from './messages.js'
 import { storage } from '../storage.js'
 import { STAGES } from './index.js'
 
@@ -15,44 +15,28 @@ export const stageTwo = {
       switch (message) {
         case '1':
           storage[params.from].stage = STAGES.RESUMO
-
           msg = returnMessage(0)
-            break;
+        break;
         case '2':
           storage[params.from].stage = STAGES.RESUMO
-
-          msg = `Aqui no local temos passeio à cavalo, piscinas, campinho de futebol, pesca esportiva e pesque pague, parquinho infantil, trilha para caminhada, 
-                 represa para banho. No day use, cobramos a entrada de 19,90 por pessoa que já dá livre acesso a pesca, piscina e trilha para caminhada. 
----------------------------------------------------------------------------------------------
-                  0️⃣ - Menu anterior;`
-            break;
+          msg = returnMessage(1)
+        break;
         case '3':
           storage[params.from].stage = STAGES.RESUMO
-          msg = `Para o day use não é necessário a reserva. Na hospedagem, pedimos metade do valor antecipado
-                   para confirmar a reserva e os demais aceitamos cartão e parcelamos até 2x.–
----------------------------------------------------------------------------------------------
-                  0️⃣ - Menu anterior;`
-            break;
+          msg = returnMessage(2)
+        break;
         case '4':
           storage[params.from].stage = STAGES.RESUMO
-          msg = `Nos localizamos em Luziânia Goiás, 17 km do centro de Luziânia. Sentido caldas novas depois do mercado três vendas.–
----------------------------------------------------------------------------------------------
-                  0️⃣ - Menu anterior;`
-            break;
+          msg = returnMessage(3)
+        break;
         case '5':
           storage[params.from].stage = STAGES.RESUMO
-          msg = `Funcionamos o day use das 9:00 as 18:00, na hospedagem servimos o jantar as 20:00 e o café as 7:00
----------------------------------------------------------------------------------------------
-                  0️⃣ - Menu anterior;`
-            break;
+          msg = returnMessage(4)
+        break;
         case '6':
           storage[params.from].stage = STAGES.RESUMO
-          msg = `A pesca esportiva ja está inclusa no valor do day use de 19,90. Caso não tenha equipamento alguamos no local, mas sugerimos levar. 
-            O peso dos peixes é bem vareado atendendo a todo publico e equipamento, os peixes chegam até 25Kg/ O lago da esportiva possui as especies: Tambaqui, Pacucaranha, Pintado, Surubim, Matrinxã e tilápia–
-	          -opcao de voltar ao menu principal
----------------------------------------------------------------------------------------------
-                  0️⃣ - Menu anterior;`
-            break;
+          msg = returnMessage(5)
+        break;
       }
     await VenomBot.getInstance().sendText({ to: params.from, message: msg })
   }
